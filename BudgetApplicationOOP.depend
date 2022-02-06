@@ -1,0 +1,37 @@
+# depslib dependency file v1.0
+1644147972 source:c:\users\gigabyte gaming\desktop\c++ projekty\k.s. projekty\budgetapplicationoop\user.cpp
+	"User.h"
+
+1644161429 c:\users\gigabyte gaming\desktop\c++ projekty\k.s. projekty\budgetapplicationoop\user.h
+	<iostream>
+
+1644168504 source:c:\users\gigabyte gaming\desktop\c++ projekty\k.s. projekty\budgetapplicationoop\usermanager.cpp
+	"UserManager.h"
+
+1644168504 c:\users\gigabyte gaming\desktop\c++ projekty\k.s. projekty\budgetapplicationoop\usermanager.h
+	<iostream>
+	<vector>
+	<iterator>
+	"User.h"
+	"HelperMethods.h"
+
+1644169086 source:c:\users\gigabyte gaming\desktop\c++ projekty\k.s. projekty\budgetapplicationoop\budgetmanager.cpp
+	"BudgetManager.h"
+
+1644162873 c:\users\gigabyte gaming\desktop\c++ projekty\k.s. projekty\budgetapplicationoop\budgetmanager.h
+	<iostream>
+	<windows.h>
+	<iterator>
+	"UserManager.h"
+
+1644180492 c:\users\gigabyte gaming\desktop\c++ projekty\k.s. projekty\budgetapplicationoop\helpermethods.h
+	<iostream>
+	<sstream>
+
+1644168061 source:c:\users\gigabyte gaming\desktop\c++ projekty\k.s. projekty\budgetapplicationoop\main.cpp
+	<iostream>
+	"BudgetManager.h"
+
+1644179464 source:c:\users\gigabyte gaming\desktop\c++ projekty\k.s. projekty\budgetapplicationoop\helpermethods.cpp
+	"HelperMethods.h"
+
