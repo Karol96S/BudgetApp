@@ -12,12 +12,10 @@ using namespace std;
 class UsersFile
 {
     CMarkup xml;
+
 public:
-    UsersFile()
-    {
-       vector <User> readUsersFromFile();
-    }
     void saveUsersToXml(vector <User> &users);
+    void addUserToXml(User &user);
     vector <User> readUsersFromFile(); //postaraj sie usunac, jest juz w konstruktorze
 };
 #endif

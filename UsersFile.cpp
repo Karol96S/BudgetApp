@@ -1,5 +1,40 @@
 #include "UsersFile.h"
 
+void UsersFile::addUserToXml(User &user)
+{
+    bool checkIfFileWasSaved = false;
+
+    if(xml.FindElem("UsersData") == false)
+    {
+     xml.AddElem("UsersData");
+    }
+
+    xml.IntoElem();
+
+    string id = "";
+    id = HelperMethods::convertIntToString(user.getId());
+
+    xml.AddElem("User");
+    xml.IntoElem();
+    xml.AddElem("userId", user.getId()); //mozliwe ze trzeba zamienic id na string
+    xml.AddElem("Login", user.getLogin());
+    xml.AddElem("Password", user.getPassword());
+    xml.AddElem("Name", user.getName());
+    xml.AddElem("Surname", user.getSurname());
+    xml.OutOfElem();
+
+    xml.OutOfElem();
+    checkIfFileWasSaved = xml.Save("C:\\Users\\GIGABYTE GAMING\\Desktop\\C++ projekty\\K.S. Projekty\\BudgetApplicationOOP\\users.xml");
+
+    system("cls");
+    if (checkIfFileWasSaved == true)
+    cout << "Data saved successfully" << endl;
+
+    else
+        cout << "Couldn't save to the file. Error has occured!" << endl;
+    system("pause");
+}
+
 void UsersFile::saveUsersToXml(vector <User> &users)
 {
     bool checkIfFileWasSaved = false;
@@ -17,12 +52,13 @@ void UsersFile::saveUsersToXml(vector <User> &users)
     string id = "";
     id = HelperMethods::convertIntToString(itr -> getId());
 
-    xml.AddElem("userId:", id); //mozliwe ze trzeba zamienic id na string
+    xml.AddElem("User");
     xml.IntoElem();
-    xml.AddElem("Login:", itr -> getLogin());
-    xml.AddElem("Password:", itr -> getPassword());
-    xml.AddElem("Name:", itr -> getName());
-    xml.AddElem("Surname:", itr ->getSurname());
+    xml.AddElem("userId", id); //mozliwe ze trzeba zamienic id na string
+    xml.AddElem("Login", itr -> getLogin());
+    xml.AddElem("Password", itr -> getPassword());
+    xml.AddElem("Name", itr -> getName());
+    xml.AddElem("Surname", itr ->getSurname());
     xml.OutOfElem();
     }
     xml.OutOfElem();
@@ -51,27 +87,27 @@ vector <User> UsersFile::readUsersFromFile()
       xml.FindElem("UsersData");
       xml.IntoElem();
 
-      while (xml.FindElem("userId:") == true)
+      while (xml.FindElem("User") == true)
       {
+      xml.IntoElem();
+      xml.FindElem("userId");
       idBeforeConversion = xml.GetData(); //zwraca string
       id = HelperMethods::convertStringToInt(idBeforeConversion);
       user.setId(id);
 
-      xml.IntoElem();
-
-      xml.FindElem("Login:");
+      xml.FindElem("Login");
       login = xml.GetData();
       user.setLogin(login);
 
-      xml.FindElem("Password:");
+      xml.FindElem("Password");
       password = xml.GetData();
       user.setPassword(password);
 
-      xml.FindElem("Name:");
+      xml.FindElem("Name");
       name = xml.GetData();
       user.setName(name);
 
-      xml.FindElem("Surname:");
+      xml.FindElem("Surname");
       surname = xml.GetData();
       user.setSurname(surname);
 
@@ -101,4 +137,6 @@ vector <User> UsersFile::readUsersFromFile()
         cout << "Couldn't read users from file." << endl;
         system("pause");
     }
+
+    return users;
 }

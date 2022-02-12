@@ -34,8 +34,16 @@
 		</Compiler>
 		<Unit filename="BudgetManager.cpp" />
 		<Unit filename="BudgetManager.h" />
+		<Unit filename="HelperMethods.cpp" />
+		<Unit filename="HelperMethods.h" />
+		<Unit filename="Markup.cpp" />
+		<Unit filename="Markup.h" />
+		<Unit filename="User.cpp" />
+		<Unit filename="User.h" />
 		<Unit filename="UserManager.cpp" />
 		<Unit filename="UserManager.h" />
+		<Unit filename="UsersFile.cpp" />
+		<Unit filename="UsersFile.h" />
 		<Unit filename="main.cpp" />
 		<Extensions />
 	</Project>

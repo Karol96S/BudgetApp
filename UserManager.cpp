@@ -20,6 +20,7 @@ User UserManager::getNewUserData()
     string newUserPassword;
     string newUserName;
     string newUserSurname;
+    int newUserId = 0;
 
     system("cls");
 
@@ -47,14 +48,24 @@ User UserManager::getNewUserData()
     user.setSurname(newUserSurname);
     cout << endl;
 
+    user.setId(getNewUserId());
+
     return user;
+}
+
+int UserManager::getNewUserId()
+{
+    if (users.empty() == true)
+        return 1;
+    else
+        return users.back().getId() + 1;
 }
 
 void UserManager::addUser()
 {
     User user = getNewUserData();
     users.push_back(user);
-    //tu dodaj zapis do pliku
+    usersFile.addUserToXml(user);//tu dodaj zapis do pliku
 
     cout << "Account has been successfully registered!" << endl;
     system("pause");

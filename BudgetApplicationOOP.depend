@@ -1,30 +1,31 @@
 # depslib dependency file v1.0
-1644147972 source:c:\users\gigabyte gaming\desktop\c++ projekty\k.s. projekty\budgetapplicationoop\user.cpp
+1644182978 source:c:\users\gigabyte gaming\desktop\c++ projekty\k.s. projekty\budgetapplicationoop\user.cpp
 	"User.h"
 
-1644161429 c:\users\gigabyte gaming\desktop\c++ projekty\k.s. projekty\budgetapplicationoop\user.h
+1644182978 c:\users\gigabyte gaming\desktop\c++ projekty\k.s. projekty\budgetapplicationoop\user.h
 	<iostream>
 
-1644168504 source:c:\users\gigabyte gaming\desktop\c++ projekty\k.s. projekty\budgetapplicationoop\usermanager.cpp
+1644704741 source:c:\users\gigabyte gaming\desktop\c++ projekty\k.s. projekty\budgetapplicationoop\usermanager.cpp
 	"UserManager.h"
 
-1644168504 c:\users\gigabyte gaming\desktop\c++ projekty\k.s. projekty\budgetapplicationoop\usermanager.h
+1644706273 c:\users\gigabyte gaming\desktop\c++ projekty\k.s. projekty\budgetapplicationoop\usermanager.h
 	<iostream>
 	<vector>
 	<iterator>
 	"User.h"
+	"UsersFile.h"
 	"HelperMethods.h"
 
-1644169086 source:c:\users\gigabyte gaming\desktop\c++ projekty\k.s. projekty\budgetapplicationoop\budgetmanager.cpp
+1644182978 source:c:\users\gigabyte gaming\desktop\c++ projekty\k.s. projekty\budgetapplicationoop\budgetmanager.cpp
 	"BudgetManager.h"
 
-1644162873 c:\users\gigabyte gaming\desktop\c++ projekty\k.s. projekty\budgetapplicationoop\budgetmanager.h
+1644182978 c:\users\gigabyte gaming\desktop\c++ projekty\k.s. projekty\budgetapplicationoop\budgetmanager.h
 	<iostream>
 	<windows.h>
 	<iterator>
 	"UserManager.h"
 
-1644180492 c:\users\gigabyte gaming\desktop\c++ projekty\k.s. projekty\budgetapplicationoop\helpermethods.h
+1644182978 c:\users\gigabyte gaming\desktop\c++ projekty\k.s. projekty\budgetapplicationoop\helpermethods.h
 	<iostream>
 	<sstream>
 
@@ -32,6 +33,30 @@
 	<iostream>
 	"BudgetManager.h"
 
-1644179464 source:c:\users\gigabyte gaming\desktop\c++ projekty\k.s. projekty\budgetapplicationoop\helpermethods.cpp
+1644182978 source:c:\users\gigabyte gaming\desktop\c++ projekty\k.s. projekty\budgetapplicationoop\helpermethods.cpp
 	"HelperMethods.h"
+
+1644705764 c:\users\gigabyte gaming\desktop\c++ projekty\k.s. projekty\budgetapplicationoop\usersfile.h
+	<iostream>
+	<vector>
+	"Markup.h"
+	"User.h"
+	"HelperMethods.h"
+
+1644182978 c:\users\gigabyte gaming\desktop\c++ projekty\k.s. projekty\budgetapplicationoop\markup.h
+	<stdlib.h>
+	<string.h>
+	<string>
+	<afx.h>
+
+1644182978 source:c:\users\gigabyte gaming\desktop\c++ projekty\k.s. projekty\budgetapplicationoop\markup.cpp
+	<stdio.h>
+	"Markup.h"
+	<errno.h>
+	<iconv.h>
+	<windows.h>
+	<mbstring.h>
+
+1644706737 source:c:\users\gigabyte gaming\desktop\c++ projekty\k.s. projekty\budgetapplicationoop\usersfile.cpp
+	"UsersFile.h"
 
