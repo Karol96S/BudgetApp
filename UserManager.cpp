@@ -65,7 +65,7 @@ void UserManager::addUser()
 {
     User user = getNewUserData();
     users.push_back(user);
-    usersFile.addUserToXml(user);//tu dodaj zapis do pliku
+    usersFile.addUserToXml(user);
 
     cout << "Account has been successfully registered!" << endl;
     system("pause");
@@ -106,4 +106,56 @@ int UserManager::loginUser()
     cout << "There is no user with that login" << endl << endl;
     system("pause");
     return 0;
+}
+
+void UserManager::logoutUser()
+{
+    loggedInUserId = 0;
+}
+
+int UserManager::getLoggedInUserId()
+{
+    return loggedInUserId;
+}
+
+string UserManager::getLoggedInUserName()
+{
+    string name = "";
+
+    for (vector <User>::iterator itr = users.begin(); itr != users.end(); itr++)
+        {
+            if (itr -> getId() == loggedInUserId)
+            {
+                name = itr -> getName();
+            }
+        }
+        return name;
+}
+
+void UserManager::changePassword()
+{
+    system("cls");
+
+    if (loggedInUserId > 0)
+    {
+        string newPassword = "";
+        cout << "Enter new password: ";
+        newPassword = HelperMethods::getLine();
+
+        for (vector <User>::iterator itr = users.begin(); itr != users.end(); itr++)
+        {
+            if (itr -> getId() == loggedInUserId)
+            {
+                itr -> setPassword(newPassword);
+                cout << "Password has been succesfully changed." << endl << endl;
+                system("pause");
+            }
+        }
+        usersFile.saveUsersToXml(users);
+    }
+    else
+    {
+        cout << "In order to change password, login first." << endl;
+        system("pause");
+    }
 }
