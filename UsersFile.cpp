@@ -2,6 +2,7 @@
 
 void UsersFile::addUserToXml(User &user)
 {
+    xml.Load(USERS_FILE_NAME+".xml");
     bool checkIfFileWasSaved = false;
 
     if(xml.FindElem("UsersData") == false)
@@ -9,14 +10,23 @@ void UsersFile::addUserToXml(User &user)
      xml.AddElem("UsersData");
     }
 
+    else
+    {
+        xml.FindElem("UsersData");
+    }
     xml.IntoElem();
+
+    while(xml.FindElem("User"))
+    {
+        xml.FindElem("User");
+    }
 
     string id = "";
     id = HelperMethods::convertIntToString(user.getId());
 
     xml.AddElem("User");
     xml.IntoElem();
-    xml.AddElem("userId", user.getId()); //mozliwe ze trzeba zamienic id na string
+    xml.AddElem("userId", user.getId());
     xml.AddElem("Login", user.getLogin());
     xml.AddElem("Password", user.getPassword());
     xml.AddElem("Name", user.getName());
@@ -24,7 +34,8 @@ void UsersFile::addUserToXml(User &user)
     xml.OutOfElem();
 
     xml.OutOfElem();
-    checkIfFileWasSaved = xml.Save("C:\\Users\\GIGABYTE GAMING\\Desktop\\C++ projekty\\K.S. Projekty\\BudgetApplicationOOP\\users.xml");
+    xml.ResetPos();
+    checkIfFileWasSaved = xml.Save(USERS_FILE_NAME+".xml");
 
     system("cls");
     if (checkIfFileWasSaved == true)
@@ -37,32 +48,35 @@ void UsersFile::addUserToXml(User &user)
 
 void UsersFile::saveUsersToXml(vector <User> &users)
 {
+    CMarkup temporaryXml;
+    string id = "";
     bool checkIfFileWasSaved = false;
 
-    if(xml.FindElem("UsersData") == false)
-    {
-     xml.AddElem("UsersData");
-    }
+    temporaryXml.AddElem("UsersData");
 
-    xml.IntoElem();
+    temporaryXml.IntoElem();
     vector <User>::iterator itr = users.begin();
 
     while(itr != users.end())
     {
-    string id = "";
+    id = "";
     id = HelperMethods::convertIntToString(itr -> getId());
 
-    xml.AddElem("User");
-    xml.IntoElem();
-    xml.AddElem("userId", id); //mozliwe ze trzeba zamienic id na string
-    xml.AddElem("Login", itr -> getLogin());
-    xml.AddElem("Password", itr -> getPassword());
-    xml.AddElem("Name", itr -> getName());
-    xml.AddElem("Surname", itr ->getSurname());
-    xml.OutOfElem();
+    temporaryXml.AddElem("User");
+    temporaryXml.IntoElem();
+    temporaryXml.AddElem("userId", id);
+    temporaryXml.AddElem("Login", itr -> getLogin());
+    temporaryXml.AddElem("Password", itr -> getPassword());
+    temporaryXml.AddElem("Name", itr -> getName());
+    temporaryXml.AddElem("Surname", itr ->getSurname());
+    temporaryXml.OutOfElem();
+    itr++;
     }
-    xml.OutOfElem();
-    checkIfFileWasSaved = xml.Save("C:\\Users\\GIGABYTE GAMING\\Desktop\\C++ projekty\\K.S. Projekty\\BudgetApplicationOOP\\users.xml");
+    temporaryXml.OutOfElem();
+    checkIfFileWasSaved = temporaryXml.Save(USERS_FILE_NAME+".xml");
+    temporaryXml.ResetPos();
+    temporaryXml.RemoveElem();
+
 
     system("cls");
     if (checkIfFileWasSaved == true)
@@ -70,6 +84,7 @@ void UsersFile::saveUsersToXml(vector <User> &users)
 
     else
         cout << "Couldn't save to the file. Error has occured!" << endl;
+
     system("pause");
 }
 
@@ -82,7 +97,7 @@ vector <User> UsersFile::readUsersFromFile()
     string idBeforeConversion = "";
     string name = "", surname = "", login = "", password = "";
 
-    if(xml.Load("C:\\Users\\GIGABYTE GAMING\\Desktop\\C++ projekty\\K.S. Projekty\\BudgetApplicationOOP\\users.xml") == true)
+    if(xml.Load(USERS_FILE_NAME+".xml") == true)
     {
       xml.FindElem("UsersData");
       xml.IntoElem();
@@ -91,7 +106,7 @@ vector <User> UsersFile::readUsersFromFile()
       {
       xml.IntoElem();
       xml.FindElem("userId");
-      idBeforeConversion = xml.GetData(); //zwraca string
+      idBeforeConversion = xml.GetData();
       id = HelperMethods::convertStringToInt(idBeforeConversion);
       user.setId(id);
 
@@ -114,6 +129,9 @@ vector <User> UsersFile::readUsersFromFile()
       xml.OutOfElem();
       users.push_back(user);
       }
+
+      xml.OutOfElem();
+      xml.ResetPos();
 
       if(id != 0)
       {
