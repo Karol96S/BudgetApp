@@ -462,6 +462,9 @@ double BudgetManager::checkSpecificTimePeriodIncomes()
     double amountIncome = 0;
     string date = "";
 
+    vector <Income> sortedIncomes = incomes;
+    sortedIncomes = Income::sortIncomesByDate(sortedIncomes);
+
     cout << "-----------------------------------------" << endl;
     cout << "            INCOMES" << endl << endl;
     for(vector <Income>::iterator itr = sortedIncomes.begin(); itr != sortedIncomes.end(); itr++)
@@ -493,6 +496,9 @@ double BudgetManager::checkSpecificTimePeriodExpenses()
     int startingDateInt = 0, endingDateInt = 0;
     double amountExpense = 0;
     string date = "";
+
+    vector <Expense> sortedExpenses = expenses;
+    sortedExpenses = Expense::sortExpensesByDate(sortedExpenses);
 
     cout << "-----------------------------------------" << endl;
     cout << "            EXPENSES" << endl << endl;
