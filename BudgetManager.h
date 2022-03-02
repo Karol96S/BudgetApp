@@ -4,7 +4,6 @@
 #include "UserManager.h"
 #include "IncomesFile.h"
 #include "ExpensesFile.h"
-//ostatnio usunalem "Expenses.h" i "Incomes.h" w razie problemow przywrocic
 
 using namespace std;
 
@@ -15,6 +14,11 @@ class BudgetManager
     vector <Expense> expenses;
     IncomesFile incomesFile;
     ExpensesFile expensesFile;
+
+    double checkCurrentMonthIncomes();
+    double checkCurrentMonthExpenses();
+    double checkPreviousMonthIncomes();
+    double checkPreviousMonthExpenses();
 
 public:
     BudgetManager(string usersFileName, string incomesFileName, string expensesFileName)
