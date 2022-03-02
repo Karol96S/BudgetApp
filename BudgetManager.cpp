@@ -565,8 +565,8 @@ void BudgetManager::checkSpecificTimePeriodBalance()
     cout << ">>> " << "Selected period balance sheet from " << HelperMethods::changeNonDashedDateToDashed(startingDate) << " to " << HelperMethods::changeNonDashedDateToDashed(endingDate)
          << " <<<" << endl << endl;
 
-         amountIncome = checkSpecificTimePeriodIncomes();
-         amountExpense = checkSpecificTimePeriodExpenses();
+    amountIncome = checkSpecificTimePeriodIncomes();
+    amountExpense = checkSpecificTimePeriodExpenses();
 
     cout << "-----------------------------------------" << endl;
     cout << "Balance: " << amountIncome - amountExpense << endl;

@@ -77,57 +77,57 @@ int HelperMethods::getTodaysDate()
 int HelperMethods::getNumberOfDaysInAMonth(int month, int year)
 {
     //leap year condition, if month is 2
-	if( month == 2)
-	{
-		if((year%400==0) || (year%4==0 && year%100!=0))
-			return 29;
-		else
-			return 28;
-	}
-	//months which has 31 days
-	else if(month == 1 || month == 3 || month == 5 || month == 7 || month == 8
-	||month == 10 || month==12)
-		return 31;
-	else
-		return 30;
+    if( month == 2)
+    {
+        if((year%400==0) || (year%4==0 && year%100!=0))
+            return 29;
+        else
+            return 28;
+    }
+    //months which has 31 days
+    else if(month == 1 || month == 3 || month == 5 || month == 7 || month == 8
+            ||month == 10 || month==12)
+        return 31;
+    else
+        return 30;
 }
 
 bool HelperMethods::checkIfDateIsCorrect(int date)
 {
-   int beginInterval = 20000101;
-   int endInterval = getTodaysDate();
-   int endIntervalMonth = 0, endIntervalYear = 0;
-   int dateDays = 0, dateMonth = 0, dateYear = 0;
-   int correctNumberOfDaysInAMonth = 0;
+    int beginInterval = 20000101;
+    int endInterval = getTodaysDate();
+    int endIntervalMonth = 0, endIntervalYear = 0;
+    int dateDays = 0, dateMonth = 0, dateYear = 0;
+    int correctNumberOfDaysInAMonth = 0;
 
-   endIntervalYear = (endInterval - (endInterval % 10000)) / 10000;
-   endIntervalMonth = (endInterval - endIntervalYear*10000 - (endInterval % 100)) / 100;
+    endIntervalYear = (endInterval - (endInterval % 10000)) / 10000;
+    endIntervalMonth = (endInterval - endIntervalYear*10000 - (endInterval % 100)) / 100;
 
-   endInterval = endInterval - (endInterval % 100 );
-   endInterval = endInterval + getNumberOfDaysInAMonth(endIntervalMonth, endIntervalYear);
+    endInterval = endInterval - (endInterval % 100 );
+    endInterval = endInterval + getNumberOfDaysInAMonth(endIntervalMonth, endIntervalYear);
 
-   if (date >= beginInterval && date <= endInterval)
-   {
-       dateYear = (date - (date % 10000))/10000;
-       dateDays = date % 100;
-       dateMonth = (date - dateYear*10000 - (dateDays))/100;
-       correctNumberOfDaysInAMonth = getNumberOfDaysInAMonth(dateMonth, dateYear);
+    if (date >= beginInterval && date <= endInterval)
+    {
+        dateYear = (date - (date % 10000))/10000;
+        dateDays = date % 100;
+        dateMonth = (date - dateYear*10000 - (dateDays))/100;
+        correctNumberOfDaysInAMonth = getNumberOfDaysInAMonth(dateMonth, dateYear);
 
-       if( dateDays <= correctNumberOfDaysInAMonth && dateDays >= 01 && dateMonth <= 12 && dateMonth >= 01)
-       {
-           return true;
-       }
+        if( dateDays <= correctNumberOfDaysInAMonth && dateDays >= 01 && dateMonth <= 12 && dateMonth >= 01)
+        {
+            return true;
+        }
 
-       else
-       {
-           return false;
-       }
-   }
+        else
+        {
+            return false;
+        }
+    }
 
-   else
-   {
-    return false;
-   }
+    else
+    {
+        return false;
+    }
 
 }
 
@@ -165,12 +165,12 @@ string HelperMethods::changeComaToDot(string userInputAmount)
     {
         if(userInputAmount[i] != ',')
         {
-        amount = amount + userInputAmount[i];
+            amount = amount + userInputAmount[i];
         }
 
         else if(userInputAmount[i] == ',')
         {
-           amount = amount + ".";
+            amount = amount + ".";
         }
     }
     return amount;
@@ -179,48 +179,48 @@ string HelperMethods::changeComaToDot(string userInputAmount)
 bool HelperMethods::checkIfItsCurrentMonth(int date)
 {
 
-   int todaysDate = getTodaysDate();
-   int todaysDateMonth = 0, todaysDateYear = 0;
+    int todaysDate = getTodaysDate();
+    int todaysDateMonth = 0, todaysDateYear = 0;
 
-   todaysDateYear = (todaysDate - (todaysDate % 10000)) / 10000;
-   todaysDateMonth = (todaysDate - todaysDateYear*10000 - (todaysDate % 100)) / 100;
+    todaysDateYear = (todaysDate - (todaysDate % 10000)) / 10000;
+    todaysDateMonth = (todaysDate - todaysDateYear*10000 - (todaysDate % 100)) / 100;
 
-   int dateToCheck = date;
-   int dateToCheckMonth = 0, dateToCheckYear = 0;
+    int dateToCheck = date;
+    int dateToCheckMonth = 0, dateToCheckYear = 0;
 
-   dateToCheckYear = (dateToCheck - (dateToCheck % 10000)) / 10000;
-   dateToCheckMonth = (dateToCheck - dateToCheckYear*10000 - (dateToCheck % 100)) / 100;
+    dateToCheckYear = (dateToCheck - (dateToCheck % 10000)) / 10000;
+    dateToCheckMonth = (dateToCheck - dateToCheckYear*10000 - (dateToCheck % 100)) / 100;
 
-   if(todaysDateMonth == dateToCheckMonth && todaysDateYear == dateToCheckYear)
-   {
-       return true;
-   }
+    if(todaysDateMonth == dateToCheckMonth && todaysDateYear == dateToCheckYear)
+    {
+        return true;
+    }
 
-   else
-    return false;
+    else
+        return false;
 }
 
 bool HelperMethods::checkIfItsPreviousMonth(int date)
 {
-   int todaysDate = getTodaysDate();
-   int todaysDateMonth = 0, todaysDateYear = 0;
+    int todaysDate = getTodaysDate();
+    int todaysDateMonth = 0, todaysDateYear = 0;
 
-   todaysDateYear = (todaysDate - (todaysDate % 10000)) / 10000;
-   todaysDateMonth = ((todaysDate - todaysDateYear*10000 - (todaysDate % 100)) / 100) - 1;
+    todaysDateYear = (todaysDate - (todaysDate % 10000)) / 10000;
+    todaysDateMonth = ((todaysDate - todaysDateYear*10000 - (todaysDate % 100)) / 100) - 1;
 
-   int dateToCheck = date;
-   int dateToCheckMonth = 0, dateToCheckYear = 0;
+    int dateToCheck = date;
+    int dateToCheckMonth = 0, dateToCheckYear = 0;
 
-   dateToCheckYear = (dateToCheck - (dateToCheck % 10000)) / 10000;
-   dateToCheckMonth = (dateToCheck - dateToCheckYear*10000 - (dateToCheck % 100)) / 100;
+    dateToCheckYear = (dateToCheck - (dateToCheck % 10000)) / 10000;
+    dateToCheckMonth = (dateToCheck - dateToCheckYear*10000 - (dateToCheck % 100)) / 100;
 
-   if(todaysDateMonth == dateToCheckMonth && todaysDateYear == dateToCheckYear)
-   {
-       return true;
-   }
+    if(todaysDateMonth == dateToCheckMonth && todaysDateYear == dateToCheckYear)
+    {
+        return true;
+    }
 
-   else
-    return false;
+    else
+        return false;
 }
 
 bool HelperMethods::checkIfItsSelectedTimePeriod(int startingDateInt, int endingDateInt, int dateToCheck)

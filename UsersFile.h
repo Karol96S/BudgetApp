@@ -16,7 +16,7 @@ class UsersFile
     const string USERS_FILE_NAME;
 
 public:
-    UsersFile(string usersFileName) : USERS_FILE_NAME(usersFileName){}
+    UsersFile(string usersFileName) : USERS_FILE_NAME(usersFileName) {}
 
     void saveUsersToXml(vector <User> &users);
     void addUserToXml(User &user);

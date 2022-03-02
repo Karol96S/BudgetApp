@@ -19,10 +19,12 @@ class BudgetManager
     double checkCurrentMonthExpenses();
     double checkPreviousMonthIncomes();
     double checkPreviousMonthExpenses();
+    double checkSpecificTimePeriodIncomes();
+    double checkSpecificTimePeriodExpenses();
 
 public:
     BudgetManager(string usersFileName, string incomesFileName, string expensesFileName)
-    : userManager(usersFileName), incomesFile(incomesFileName), expensesFile(expensesFileName){}
+        : userManager(usersFileName), incomesFile(incomesFileName), expensesFile(expensesFileName) {}
 
     int loginMenu();
     int mainMenu();
