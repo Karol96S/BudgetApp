@@ -455,10 +455,9 @@ void BudgetManager::checkPreviousMonthBalance()
     system("pause");
 }
 
-double BudgetManager::checkSpecificTimePeriodIncomes()
+double BudgetManager::checkSpecificTimePeriodIncomes(int startingDateInt, int endingDateInt)
 {
     int numberOfOccurances = 0;
-    int startingDateInt = 0, endingDateInt = 0;
     double amountIncome = 0;
     string date = "";
 
@@ -490,10 +489,9 @@ double BudgetManager::checkSpecificTimePeriodIncomes()
     return amountIncome;
 }
 
-double BudgetManager::checkSpecificTimePeriodExpenses()
+double BudgetManager::checkSpecificTimePeriodExpenses(int startingDateInt, int endingDateInt)
 {
     int numberOfOccurances = 0;
-    int startingDateInt = 0, endingDateInt = 0;
     double amountExpense = 0;
     string date = "";
 
@@ -533,7 +531,7 @@ void BudgetManager::checkSpecificTimePeriodBalance()
 {
     int startingDateInt = 0, endingDateInt = 0;
     double amountIncome = 0, amountExpense = 0, balance = 0;
-    string date = "", startingDate = "", endingDate = "";
+    string startingDate = "", endingDate = "";
 
     do
     {
@@ -571,8 +569,8 @@ void BudgetManager::checkSpecificTimePeriodBalance()
     cout << ">>> " << "Selected period balance sheet from " << HelperMethods::changeNonDashedDateToDashed(startingDate) << " to " << HelperMethods::changeNonDashedDateToDashed(endingDate)
          << " <<<" << endl << endl;
 
-    amountIncome = checkSpecificTimePeriodIncomes();
-    amountExpense = checkSpecificTimePeriodExpenses();
+    amountIncome = checkSpecificTimePeriodIncomes(startingDateInt, endingDateInt);
+    amountExpense = checkSpecificTimePeriodExpenses(startingDateInt, endingDateInt);
 
     cout << "-----------------------------------------" << endl;
     cout << "Balance: " << amountIncome - amountExpense << endl;

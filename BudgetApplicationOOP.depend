@@ -16,10 +16,10 @@
 	"UsersFile.h"
 	"HelperMethods.h"
 
-1645988253 source:c:\users\gigabyte gaming\desktop\c++ projekty\k.s. projekty\budgetapplicationoop\budgetmanager.cpp
+1646254585 source:c:\users\gigabyte gaming\desktop\c++ projekty\k.s. projekty\budgetapplicationoop\budgetmanager.cpp
 	"BudgetManager.h"
 
-1646251891 c:\users\gigabyte gaming\desktop\c++ projekty\k.s. projekty\budgetapplicationoop\budgetmanager.h
+1646253212 c:\users\gigabyte gaming\desktop\c++ projekty\k.s. projekty\budgetapplicationoop\budgetmanager.h
 	<iostream>
 	<windows.h>
 	<iterator>
@@ -84,10 +84,10 @@
 	<iterator>
 	"HelperMethods.h"
 
-1645999947 source:c:\users\gigabyte gaming\desktop\c++ projekty\k.s. projekty\budgetapplicationoop\expensesfile.cpp
+1646255670 source:c:\users\gigabyte gaming\desktop\c++ projekty\k.s. projekty\budgetapplicationoop\expensesfile.cpp
 	"ExpensesFile.h"
 
-1645999947 source:c:\users\gigabyte gaming\desktop\c++ projekty\k.s. projekty\budgetapplicationoop\incomesfile.cpp
+1646255571 source:c:\users\gigabyte gaming\desktop\c++ projekty\k.s. projekty\budgetapplicationoop\incomesfile.cpp
 	"IncomesFile.h"
 
 1645999947 source:c:\users\gigabyte gaming\desktop\c++ projekty\k.s. projekty\budgetapplicationoop\expenses.cpp
@@ -96,7 +96,7 @@
 1645999947 source:c:\users\gigabyte gaming\desktop\c++ projekty\k.s. projekty\budgetapplicationoop\incomes.cpp
 	"Incomes.h"
 
-1646251799 c:\users\gigabyte gaming\desktop\c++ projekty\k.s. projekty\budgetapplicationoop\expensesfile.h
+1646252060 c:\users\gigabyte gaming\desktop\c++ projekty\k.s. projekty\budgetapplicationoop\expensesfile.h
 	<iostream>
 	<vector>
 	<stdlib.h>
@@ -104,7 +104,7 @@
 	"Markup.h"
 	"HelperMethods.h"
 
-1646251799 c:\users\gigabyte gaming\desktop\c++ projekty\k.s. projekty\budgetapplicationoop\incomesfile.h
+1646252060 c:\users\gigabyte gaming\desktop\c++ projekty\k.s. projekty\budgetapplicationoop\incomesfile.h
 	<iostream>
 	<vector>
 	"Markup.h"

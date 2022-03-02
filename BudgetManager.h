@@ -19,8 +19,8 @@ class BudgetManager
     double checkCurrentMonthExpenses();
     double checkPreviousMonthIncomes();
     double checkPreviousMonthExpenses();
-    double checkSpecificTimePeriodIncomes();
-    double checkSpecificTimePeriodExpenses();
+    double checkSpecificTimePeriodIncomes(int startingDateInt, int endingDateInt);
+    double checkSpecificTimePeriodExpenses(int startingDateInt, int endingDateInt);
 
 public:
     BudgetManager(string usersFileName, string incomesFileName, string expensesFileName)
