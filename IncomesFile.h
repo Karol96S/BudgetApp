@@ -15,7 +15,7 @@ class IncomesFile
     const string INCOMES_FILE_NAME;
 
 public:
-    IncomesFile(string incomesFileName) : INCOMES_FILE_NAME(incomesFileName){}
+    IncomesFile(string incomesFileName) : INCOMES_FILE_NAME(incomesFileName) {}
 
     void addIncomeToXml(Income &income, int loggedInUserId);
     vector <Income> readIncomeFromFile(int loggedInUserId);

@@ -16,7 +16,7 @@ class ExpensesFile
     const string EXPENSES_FILE_NAME;
 
 public:
-    ExpensesFile(string expensesFileName) : EXPENSES_FILE_NAME(expensesFileName){}
+    ExpensesFile(string expensesFileName) : EXPENSES_FILE_NAME(expensesFileName) {}
 
     void addExpenseToXml(Expense &expense, int loggedInUserId);
     vector <Expense> readExpenseFromFile(int loggedInUserId);

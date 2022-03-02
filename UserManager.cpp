@@ -26,10 +26,10 @@ User UserManager::getNewUserData()
 
     do
     {
-     cout << "Enter login: ";
-     cin >> newUserLogin;
-     cout << endl;
-     user.setLogin(newUserLogin);
+        cout << "Enter login: ";
+        cin >> newUserLogin;
+        cout << endl;
+        user.setLogin(newUserLogin);
     }
     while( checkIfLoginIsTaken(newUserLogin) == true );
 
@@ -123,13 +123,13 @@ string UserManager::getLoggedInUserName()
     string name = "";
 
     for (vector <User>::iterator itr = users.begin(); itr != users.end(); itr++)
+    {
+        if (itr -> getId() == loggedInUserId)
         {
-            if (itr -> getId() == loggedInUserId)
-            {
-                name = itr -> getName();
-            }
+            name = itr -> getName();
         }
-        return name;
+    }
+    return name;
 }
 
 void UserManager::changePassword()
