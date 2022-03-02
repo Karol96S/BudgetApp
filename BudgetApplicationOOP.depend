@@ -19,7 +19,7 @@
 1646254585 source:c:\users\gigabyte gaming\desktop\c++ projekty\k.s. projekty\budgetapplicationoop\budgetmanager.cpp
 	"BudgetManager.h"
 
-1646253212 c:\users\gigabyte gaming\desktop\c++ projekty\k.s. projekty\budgetapplicationoop\budgetmanager.h
+1646257315 c:\users\gigabyte gaming\desktop\c++ projekty\k.s. projekty\budgetapplicationoop\budgetmanager.h
 	<iostream>
 	<windows.h>
 	<iterator>
@@ -27,7 +27,7 @@
 	"IncomesFile.h"
 	"ExpensesFile.h"
 
-1646251891 c:\users\gigabyte gaming\desktop\c++ projekty\k.s. projekty\budgetapplicationoop\helpermethods.h
+1646257315 c:\users\gigabyte gaming\desktop\c++ projekty\k.s. projekty\budgetapplicationoop\helpermethods.h
 	<iostream>
 	<sstream>
 	<algorithm>
