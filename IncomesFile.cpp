@@ -98,9 +98,9 @@ vector <Income> IncomesFile::readIncomeFromFile(int loggedInUserId)
                 amount = HelperMethods::convertStringToDouble(amountBeforeConversion);
                 income.setAmount(amount);
 
-                incomeXml.OutOfElem();
                 incomes.push_back(income);
             }
+            incomeXml.OutOfElem();
         }
 
         incomeXml.OutOfElem();

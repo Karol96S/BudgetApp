@@ -32,6 +32,5 @@ public:
     static string changeDashedDateToNonDashed(string dateString);
     static string changeNonDashedDateToDashed(string dateNonDashed);
     static string changeComaToDot(string userInputAmount);
-    //to samo z expense
 };
 #endif

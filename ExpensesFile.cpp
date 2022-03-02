@@ -98,9 +98,9 @@ vector <Expense> ExpensesFile::readExpenseFromFile(int loggedInUserId)
                 amount = HelperMethods::convertStringToDouble(amountBeforeConversion);
                 expense.setAmount(amount);
 
-                expenseXml.OutOfElem();
                 expenses.push_back(expense);
             }
+            expenseXml.OutOfElem();
         }
 
         expenseXml.OutOfElem();
