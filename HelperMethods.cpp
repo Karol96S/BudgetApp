@@ -67,7 +67,7 @@ int HelperMethods::getTodaysDate()
     auto tm = *std::localtime(&t);
 
     std::ostringstream oss;
-    oss << std::put_time(&tm, "%Y%m%d"); // oryginal ''oss << std::put_time(&tm, "%Y-%m-%d");''
+    oss << std::put_time(&tm, "%Y%m%d");
     auto str = oss.str();
     date = convertStringToInt(str);
 

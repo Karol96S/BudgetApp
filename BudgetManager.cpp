@@ -269,16 +269,14 @@ void BudgetManager::addExpense()
     }
 }
 
-void BudgetManager::checkCurrentMonthBalance()
+double BudgetManager::checkCurrentMonthIncomes()
 {
     int numberOfOccurances = 0;
-    double amountIncome = 0, amountExpense = 0, balance = 0;
+    double amountIncome = 0;
     string date = "";
 
     vector <Income> sortedIncomes = incomes;
-    vector <Expense> sortedExpenses = expenses;
     sortedIncomes = Income::sortIncomesByDate(sortedIncomes);
-    sortedExpenses = Expense::sortExpensesByDate(sortedExpenses);
 
     system("cls");
 
@@ -300,6 +298,7 @@ void BudgetManager::checkCurrentMonthBalance()
             cout << "Amount: " << itr -> getAmount() << endl << endl;
         }
     }
+
     if(numberOfOccurances == 0)
     {
         cout << "No data has been provided for that time period yet." << endl;
@@ -307,11 +306,23 @@ void BudgetManager::checkCurrentMonthBalance()
     cout << endl << "Incomes total value: " << amountIncome << endl;
     cout << endl;
 
+    return amountIncome;
+}
+
+double BudgetManager::checkCurrentMonthExpenses()
+{
+    int numberOfOccurances = 0;
+    double amountExpense = 0;
+    string date = "";
+
+    vector <Expense> sortedExpenses = expenses;
+    sortedExpenses = Expense::sortExpensesByDate(sortedExpenses);
 
     cout << "-----------------------------------------" << endl;
     cout << "            EXPENSES" << endl << endl;
 
     numberOfOccurances = 0;
+
     for(vector <Expense>::iterator itr = sortedExpenses.begin(); itr != sortedExpenses.end(); itr++)
     {
         if(HelperMethods::checkIfItsCurrentMonth(itr -> getDate()) == true)
@@ -326,6 +337,7 @@ void BudgetManager::checkCurrentMonthBalance()
             cout << "Amount: " << itr -> getAmount() << endl << endl;
         }
     }
+
     if(numberOfOccurances == 0)
     {
         cout << "No data has been provided for that time period yet." << endl;
@@ -333,6 +345,17 @@ void BudgetManager::checkCurrentMonthBalance()
     cout << endl << "Expenses total value: " << amountExpense << endl;
     cout << "-----------------------------------------" << endl;
     cout << endl << endl;
+
+    return amountExpense;
+}
+
+void BudgetManager::checkCurrentMonthBalance()
+{
+    double amountIncome = 0, amountExpense = 0, balance = 0;
+    string date = "";
+
+    amountIncome = checkCurrentMonthIncomes();
+    amountExpense = checkCurrentMonthExpenses();
 
     cout << "-----------------------------------------" << endl;
     cout << "Balance: " << amountIncome - amountExpense << endl;
@@ -342,16 +365,14 @@ void BudgetManager::checkCurrentMonthBalance()
     system("pause");
 }
 
-void BudgetManager::checkPreviousMonthBalance()
+double BudgetManager::checkPreviousMonthIncomes()
 {
     int numberOfOccurances = 0;
-    double amountIncome = 0, amountExpense = 0, balance = 0;
+    double amountIncome = 0;
     string date = "";
 
     vector <Income> sortedIncomes = incomes;
-    vector <Expense> sortedExpenses = expenses;
     sortedIncomes = Income::sortIncomesByDate(sortedIncomes);
-    sortedExpenses = Expense::sortExpensesByDate(sortedExpenses);
 
     system("cls");
 
@@ -379,6 +400,17 @@ void BudgetManager::checkPreviousMonthBalance()
     }
     cout << endl << "Incomes total value: " << amountIncome << endl;
 
+    return amountIncome;
+}
+
+double BudgetManager::checkPreviousMonthExpenses()
+{
+    int numberOfOccurances = 0;
+    double amountIncome = 0, amountExpense = 0, balance = 0;
+    string date = "";
+
+    vector <Expense> sortedExpenses = expenses;
+    sortedExpenses = Expense::sortExpensesByDate(sortedExpenses);
 
     cout << "-----------------------------------------" << endl;
     cout << "            EXPENSES" << endl << endl;
@@ -405,6 +437,17 @@ void BudgetManager::checkPreviousMonthBalance()
     cout << "-----------------------------------------" << endl;
     cout << endl << endl;
 
+    return amountExpense;
+}
+
+void BudgetManager::checkPreviousMonthBalance()
+{
+    double amountIncome = 0, amountExpense = 0, balance = 0;
+    string date = "";
+
+    amountIncome = checkPreviousMonthIncomes();
+    amountExpense = checkPreviousMonthExpenses();
+
     cout << "-----------------------------------------" << endl;
     cout << "Balance: " << amountIncome - amountExpense << endl;
     cout << "-----------------------------------------" << endl << endl;
@@ -412,17 +455,79 @@ void BudgetManager::checkPreviousMonthBalance()
     system("pause");
 }
 
-void BudgetManager::checkSpecificTimePeriodBalance()
+double BudgetManager::checkSpecificTimePeriodIncomes()
 {
     int numberOfOccurances = 0;
     int startingDateInt = 0, endingDateInt = 0;
+    double amountIncome = 0;
+    string date = "";
+
+    cout << "-----------------------------------------" << endl;
+    cout << "            INCOMES" << endl << endl;
+    for(vector <Income>::iterator itr = sortedIncomes.begin(); itr != sortedIncomes.end(); itr++)
+    {
+        if(HelperMethods::checkIfItsSelectedTimePeriod(startingDateInt, endingDateInt, itr -> getDate()) == true)
+        {
+            amountIncome = amountIncome + itr -> getAmount();
+            numberOfOccurances++;
+            date = HelperMethods::convertIntToString(itr -> getDate());
+            date = HelperMethods::changeNonDashedDateToDashed(date);
+            cout << numberOfOccurances << "." << endl;
+            cout << "Date: " << date << endl;
+            cout << "Source of income: " << itr -> getItem() << endl;
+            cout << "Amount: " << itr -> getAmount() << endl << endl;
+        }
+    }
+    if(numberOfOccurances == 0)
+    {
+        cout << "No data has been provided for that time period yet." << endl;
+    }
+    cout << endl << "Incomes total value: " << amountIncome << endl;
+
+    return amountIncome;
+}
+
+double BudgetManager::checkSpecificTimePeriodExpenses()
+{
+    int numberOfOccurances = 0;
+    int startingDateInt = 0, endingDateInt = 0;
+    double amountExpense = 0;
+    string date = "";
+
+    cout << "-----------------------------------------" << endl;
+    cout << "            EXPENSES" << endl << endl;
+    numberOfOccurances = 0;
+
+    for(vector <Expense>::iterator itr = sortedExpenses.begin(); itr != sortedExpenses.end(); itr++)
+    {
+        if(HelperMethods::checkIfItsSelectedTimePeriod(startingDateInt, endingDateInt, itr -> getDate()) == true)
+        {
+            amountExpense = amountExpense + itr -> getAmount();
+            numberOfOccurances++;
+            date = HelperMethods::convertIntToString(itr -> getDate());
+            date = HelperMethods::changeNonDashedDateToDashed(date);
+            cout << numberOfOccurances << "." << endl;
+            cout << "Date: " << date << endl;
+            cout << "Source of income: " << itr -> getItem() << endl;
+            cout << "Amount: " << itr -> getAmount() << endl << endl;
+        }
+    }
+    if(numberOfOccurances == 0)
+    {
+        cout << "No data has been provided for that time period yet." << endl;
+    }
+    cout << endl << "Expenses total value: " << amountExpense << endl;
+    cout << "-----------------------------------------" << endl;
+    cout << endl << endl;
+
+    return amountExpense;
+}
+
+void BudgetManager::checkSpecificTimePeriodBalance()
+{
+    int startingDateInt = 0, endingDateInt = 0;
     double amountIncome = 0, amountExpense = 0, balance = 0;
     string date = "", startingDate = "", endingDate = "";
-
-    vector <Income> sortedIncomes = incomes;
-    vector <Expense> sortedExpenses = expenses;
-    sortedIncomes = Income::sortIncomesByDate(sortedIncomes);
-    sortedExpenses = Expense::sortExpensesByDate(sortedExpenses);
 
     do
     {
@@ -460,54 +565,8 @@ void BudgetManager::checkSpecificTimePeriodBalance()
     cout << ">>> " << "Selected period balance sheet from " << HelperMethods::changeNonDashedDateToDashed(startingDate) << " to " << HelperMethods::changeNonDashedDateToDashed(endingDate)
          << " <<<" << endl << endl;
 
-    cout << "-----------------------------------------" << endl;
-    cout << "            INCOMES" << endl << endl;
-    for(vector <Income>::iterator itr = sortedIncomes.begin(); itr != sortedIncomes.end(); itr++)
-    {
-        if(HelperMethods::checkIfItsSelectedTimePeriod(startingDateInt, endingDateInt, itr -> getDate()) == true)
-        {
-            amountIncome = amountIncome + itr -> getAmount();
-            numberOfOccurances++;
-            date = HelperMethods::convertIntToString(itr -> getDate());
-            date = HelperMethods::changeNonDashedDateToDashed(date);
-            cout << numberOfOccurances << "." << endl;
-            cout << "Date: " << date << endl;
-            cout << "Source of income: " << itr -> getItem() << endl;
-            cout << "Amount: " << itr -> getAmount() << endl << endl;
-        }
-    }
-    if(numberOfOccurances == 0)
-    {
-        cout << "No data has been provided for that time period yet." << endl;
-    }
-    cout << endl << "Incomes total value: " << amountIncome << endl;
-
-
-    cout << "-----------------------------------------" << endl;
-    cout << "            EXPENSES" << endl << endl;
-    numberOfOccurances = 0;
-
-    for(vector <Expense>::iterator itr = sortedExpenses.begin(); itr != sortedExpenses.end(); itr++)
-    {
-        if(HelperMethods::checkIfItsSelectedTimePeriod(startingDateInt, endingDateInt, itr -> getDate()) == true)
-        {
-            amountExpense = amountExpense + itr -> getAmount();
-            numberOfOccurances++;
-            date = HelperMethods::convertIntToString(itr -> getDate());
-            date = HelperMethods::changeNonDashedDateToDashed(date);
-            cout << numberOfOccurances << "." << endl;
-            cout << "Date: " << date << endl;
-            cout << "Source of income: " << itr -> getItem() << endl;
-            cout << "Amount: " << itr -> getAmount() << endl << endl;
-        }
-    }
-    if(numberOfOccurances == 0)
-    {
-        cout << "No data has been provided for that time period yet." << endl;
-    }
-    cout << endl << "Expenses total value: " << amountExpense << endl;
-    cout << "-----------------------------------------" << endl;
-    cout << endl << endl;
+         amountIncome = checkSpecificTimePeriodIncomes();
+         amountExpense = checkSpecificTimePeriodExpenses();
 
     cout << "-----------------------------------------" << endl;
     cout << "Balance: " << amountIncome - amountExpense << endl;
