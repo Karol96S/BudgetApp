@@ -176,6 +176,32 @@ string HelperMethods::changeComaToDot(string userInputAmount)
     return amount;
 }
 
+string HelperMethods::removeTailingZeros(string amount)
+{
+    string amountWithoutTailingZeros = "";
+
+    for(int i = 0; i < amount.length(); i++)
+    {
+        if(amount[i] != '.')
+        {
+            amountWithoutTailingZeros = amountWithoutTailingZeros + amount[i];
+        }
+
+        else if(amount[i] == '.')
+        {
+            amountWithoutTailingZeros = amountWithoutTailingZeros + amount[i];
+            i++;
+            amountWithoutTailingZeros = amountWithoutTailingZeros + amount[i];
+            i++;
+            amountWithoutTailingZeros = amountWithoutTailingZeros + amount[i];
+
+            break;
+        }
+    }
+
+    return amountWithoutTailingZeros;
+}
+
 bool HelperMethods::checkIfItsCurrentMonth(int date)
 {
 

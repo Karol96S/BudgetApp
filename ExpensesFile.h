@@ -18,6 +18,7 @@ class ExpensesFile
 public:
     ExpensesFile(string expensesFileName) : EXPENSES_FILE_NAME(expensesFileName) {}
 
+    int getLastExpenseId();
     void addExpenseToXml(Expense &expense, int loggedInUserId);
     vector <Expense> readExpenseFromFile(int loggedInUserId);
 };

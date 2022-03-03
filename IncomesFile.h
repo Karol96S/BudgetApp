@@ -17,6 +17,7 @@ class IncomesFile
 public:
     IncomesFile(string incomesFileName) : INCOMES_FILE_NAME(incomesFileName) {}
 
+    int getLastIncomeId();
     void addIncomeToXml(Income &income, int loggedInUserId);
     vector <Income> readIncomeFromFile(int loggedInUserId);
 };

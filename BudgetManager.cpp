@@ -105,6 +105,7 @@ void BudgetManager::addIncome()
 {
     Income income;
     int date = 0;
+    int newUserId = 0;
     double amount = 0;
     string choice = "", item = "", userInputAmount = "", dateString = "";
 
@@ -130,14 +131,17 @@ void BudgetManager::addIncome()
             income.setItem(item);
             income.setDate(date);
 
-            if(incomes.size() == 0)
+            newUserId = incomesFile.getLastIncomeId();
+
+            if (newUserId == -1)
             {
                 income.setId(1);
             }
-            else
+            else if (newUserId >= 1)
             {
-                income.setId(incomes.back().getId()+1);
+                income.setId(newUserId + 1);
             }
+
             incomesFile.addIncomeToXml(income, userManager.getLoggedInUserId());
             incomes.push_back(income);
         }
@@ -171,14 +175,17 @@ void BudgetManager::addIncome()
             income.setItem(item);
             income.setDate(date);
 
-            if(incomes.size() == 0)
+            newUserId = incomesFile.getLastIncomeId();
+
+            if (newUserId == -1)
             {
                 income.setId(1);
             }
-            else
+            else if (newUserId >= 1)
             {
-                income.setId(incomes.back().getId()+1);
+                income.setId(newUserId + 1);
             }
+
             incomesFile.addIncomeToXml(income, userManager.getLoggedInUserId());
             incomes.push_back(income);
         }
@@ -189,6 +196,7 @@ void BudgetManager::addExpense()
 {
     Expense expense;
     int date = 0;
+    int newUserId = 0;
     double amount = 0;
     string choice = "", item = "", userInputAmount = "", dateString = "";
 
@@ -214,14 +222,17 @@ void BudgetManager::addExpense()
             expense.setItem(item);
             expense.setDate(date);
 
-            if(expenses.size() == 0)
+            newUserId = expensesFile.getLastExpenseId();
+
+            if (newUserId == -1)
             {
                 expense.setId(1);
             }
-            else
+            else if (newUserId >= 1)
             {
-                expense.setId(expenses.back().getId()+1);
+                expense.setId(newUserId + 1);
             }
+
             expensesFile.addExpenseToXml(expense, userManager.getLoggedInUserId());
             expenses.push_back(expense);
         }
@@ -255,14 +266,17 @@ void BudgetManager::addExpense()
             expense.setItem(item);
             expense.setDate(date);
 
-            if(expenses.size() == 0)
+            newUserId = expensesFile.getLastExpenseId();
+
+            if (newUserId == -1)
             {
                 expense.setId(1);
             }
-            else
+            else if (newUserId >= 1)
             {
-                expense.setId(expenses.back().getId()+1);
+                expense.setId(newUserId + 1);
             }
+
             expensesFile.addExpenseToXml(expense, userManager.getLoggedInUserId());
             expenses.push_back(expense);
         }
@@ -551,11 +565,23 @@ void BudgetManager::checkSpecificTimePeriodBalance()
 
     do
     {
-        system("cls");
-        cout << "Please select ending point of balance sheet according to yyyy-mm-dd: ";
-        endingDate = HelperMethods::getLine();
-        endingDate = HelperMethods::changeDashedDateToNonDashed(endingDate);
-        endingDateInt = HelperMethods::convertStringToInt(endingDate);
+        endingDateInt = 0;
+
+        while(endingDateInt < startingDateInt)
+        {
+            system("cls");
+            cout << "Please select ending point of balance sheet according to yyyy-mm-dd: ";
+            endingDate = HelperMethods::getLine();
+            endingDate = HelperMethods::changeDashedDateToNonDashed(endingDate);
+            endingDateInt = HelperMethods::convertStringToInt(endingDate);
+
+            if (endingDateInt < startingDateInt)
+            {
+                system ("cls");
+                cout << "Ending point date shouldn't be earlier than previously given starting point date " << endl;
+                system("pause");
+            }
+        }
 
         if(HelperMethods::checkIfDateIsCorrect(endingDateInt) == false)
         {

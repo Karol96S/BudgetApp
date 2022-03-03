@@ -22,6 +22,7 @@ void IncomesFile::addIncomeToXml(Income &income, int loggedInUserId)
     {
         incomeXml.FindElem("Income");
     }
+
     int dateBeforeConversion = 0;
     double amountBeforeConversion = 0;
     string date = "", amount = "";
@@ -30,6 +31,7 @@ void IncomesFile::addIncomeToXml(Income &income, int loggedInUserId)
     date = HelperMethods::convertIntToString(dateBeforeConversion);
     date = HelperMethods::changeNonDashedDateToDashed(date);
     amount = HelperMethods::convertDoubleToString(amountBeforeConversion);
+    amount = HelperMethods::removeTailingZeros(amount);
 
     incomeXml.AddElem("Income");
     incomeXml.IntoElem();
@@ -127,4 +129,39 @@ vector <Income> IncomesFile::readIncomeFromFile(int loggedInUserId)
     }
 
     return incomes;
+}
+
+int IncomesFile::getLastIncomeId()
+{
+    CMarkup temporaryXml;
+    int incomeId = 0;
+    int checkIfFileIsEmpty = 0;
+    string incomeIdBeforeConversion = "";
+
+    if(temporaryXml.Load(INCOMES_FILE_NAME+".xml") == true)
+    {
+        temporaryXml.ResetPos();
+        temporaryXml.FindElem("IncomesData");
+        temporaryXml.IntoElem();
+
+        while (temporaryXml.FindElem("Income") == true)
+        {
+            checkIfFileIsEmpty++;
+            temporaryXml.IntoElem();
+
+            temporaryXml.FindElem("incomeId");
+            incomeIdBeforeConversion = temporaryXml.GetData();
+            incomeId = HelperMethods::convertStringToInt(incomeIdBeforeConversion);
+            temporaryXml.OutOfElem();
+        }
+    }
+
+    temporaryXml.OutOfElem();
+    temporaryXml.ResetPos();
+
+    if(checkIfFileIsEmpty == 0)
+        return -1;
+
+    else
+        return incomeId;
 }
