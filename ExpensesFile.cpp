@@ -30,6 +30,7 @@ void ExpensesFile::addExpenseToXml(Expense &expense, int loggedInUserId)
     date = HelperMethods::convertIntToString(dateBeforeConversion);
     date = HelperMethods::changeNonDashedDateToDashed(date);
     amount = HelperMethods::convertDoubleToString(amountBeforeConversion);
+    amount = HelperMethods::removeTailingZeros(amount);
 
     expenseXml.AddElem("Expense");
     expenseXml.IntoElem();
@@ -130,4 +131,39 @@ vector <Expense> ExpensesFile::readExpenseFromFile(int loggedInUserId)
     }
 
     return expenses;
+}
+
+int ExpensesFile::getLastExpenseId()
+{
+    CMarkup temporaryXml;
+    int expenseId = 0;
+    int checkIfFileIsEmpty = 0;
+    string expenseIdBeforeConversion = "";
+
+    if(temporaryXml.Load(EXPENSES_FILE_NAME+".xml") == true)
+    {
+        temporaryXml.ResetPos();
+        temporaryXml.FindElem("ExpensesData");
+        temporaryXml.IntoElem();
+
+        while (temporaryXml.FindElem("Expense") == true)
+        {
+            checkIfFileIsEmpty++;
+            temporaryXml.IntoElem();
+
+            temporaryXml.FindElem("expenseId");
+            expenseIdBeforeConversion = temporaryXml.GetData();
+            expenseId = HelperMethods::convertStringToInt(expenseIdBeforeConversion);
+            temporaryXml.OutOfElem();
+        }
+    }
+
+    temporaryXml.OutOfElem();
+    temporaryXml.ResetPos();
+
+    if(checkIfFileIsEmpty == 0)
+        return -1;
+
+    else
+        return expenseId;
 }
